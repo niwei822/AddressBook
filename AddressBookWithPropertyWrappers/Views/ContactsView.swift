@@ -9,21 +9,25 @@ import SwiftUI
 
 struct ContactsView: View {
     // TODO: ENVIRONMENTOBJECT - Add view model
+    //asserts the property will be passed in by parent view
+    @EnvironmentObject var viewModel: AddressBookViewModel
     
     var body: some View {
-        ForEach(0..<4) { index in //TODO: ENVIRONMENTOBJECT - Use the number of contacts from the view model
+        ForEach(0..<viewModel.contactCount) { index in //TODO: ENVIRONMENTOBJECT - Use the number of contacts from the view model
             HStack {
+                let contact = viewModel.contact(atIndex: index)
                 VStack {
                     // TODO: ENVIRONMENTOBJECT - Add the correct name and postal code
-                    Text("Name at index \(index)")
-                    Text("Postal code")
+                    Text(contact.name)
+                    Text(contact.displayPostalCode)
                         .font(.caption2)
                 }
                 Button(action: {
                     // TODO: ENVIRONMENTOBJECT - Call the appropriate view model method
-                    print("Star tapped at index: \(index)")
+                    viewModel.toggleFavorite(atIndex: index)
                 }) {
                     // TODO: ENVIRONMENTOBJECT - Update the star to be filled when the contact is a favorite
+                    contact.isFavorite ? Image(systemName: "star.fill") :
                     Image(systemName: "star")
                 }
             }
@@ -36,5 +40,6 @@ struct ContactsView: View {
 struct ContactsView_Previews: PreviewProvider {
     static var previews: some View {
         ContactsView() // TODO: ENVIRONMENTOBJECT - Add the view model to the preview
+            .environmentObject(AddressBookViewModel())
     }
 }

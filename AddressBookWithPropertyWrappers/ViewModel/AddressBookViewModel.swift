@@ -8,7 +8,9 @@
 import Foundation
 
 class AddressBookViewModel: ObservableObject {
-    var addressBook = AddressBook() // TODO: PUBLISHED - Add a property wrapper so that changes will be published
+    // is used for any property that you want to notify views whenever its value has changed.
+    //@Published attribute can only be used for properties inside classes and not structures.
+   @Published var addressBook = AddressBook() // TODO: PUBLISHED - Add a property wrapper so that changes will be published
     
     var contactCount: Int { addressBook.numberOfContacts }
     
