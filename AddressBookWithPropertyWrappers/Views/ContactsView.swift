@@ -10,6 +10,8 @@ import SwiftUI
 struct ContactsView: View {
     // TODO: ENVIRONMENTOBJECT - Add view model
     //asserts the property will be passed in by parent view
+    //@EnvironmentObject == Singalton read shared data, not own data
+    //@observedObject also work here
     @EnvironmentObject var viewModel: AddressBookViewModel
     
     var body: some View {

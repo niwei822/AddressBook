@@ -9,14 +9,19 @@ import SwiftUI
 
 struct AddressBookView: View {
     // TODO: STATEOBJECT - Add property wrapper to viewModel so that it observes changes
+    //@StateObject is used to store new instances of reference type data conforms Observableobject protocol
+    //owns the data
+    //make sure viewModel instance not get destroyed when view updates
     @StateObject private var viewModel = AddressBookViewModel()
     
     // TODO: STATE - Add property wrapper to displayFavoriteCount property so it can be reassigned
+    //@State == Mutating allow us to modify values inside struct(view)
+    //for simple property that never get used outside view(marked as private)
     @State private var displayFavoriteCount = true
     
     var body: some View {
         VStack {
-            Text("Address Book")
+            Text("Address Book")    
                 .font(.title)
                 .padding()                               
             Spacer()
